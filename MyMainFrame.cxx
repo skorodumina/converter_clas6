@@ -190,7 +190,7 @@ TH1I *hist_adc_off[12];
 	//Float_t sc_x_p,sc_y_p,sc_z_p;
 	Float_t nx,ny,nz,t,theta_cc;
 	Float_t sx,sy,sz,px,py,pz,ph_cc,LiveTime;
-	
+
 	Float_t beta_PIm,beta_PIp,beta_P,NpheCC_PIp;
 	Float_t beta_PIp_time,beta_PIm_time,beta_P_time;
 	Float_t EL_dist,PIp_dist,PIm_dist,P_dist;
@@ -1172,7 +1172,7 @@ nz=(br_dc_czsc->GetLeaf("dc_czsc")->GetValue(br_dc->GetLeaf("dc")->GetValue(0)-1
 nz = 0;
 };
 
-t=(sx*sc_x+sy*sc_y+sz*sc_z+1.)/(sx*nx+sy*ny+sz*nz);
+t=abs((sx*sc_x+sy*sc_y+sz*sc_z+1.)/(sx*nx+sy*ny+sz*nz));
 
 
 
@@ -1180,8 +1180,7 @@ px=sc_x+t*nx;
 py=sc_y+t*ny;
 pz=sc_z+t*nz;
 
-
-//cout << "P0 = " << sqrt(sc_x*sc_x+sc_y*sc_y+sc_z*sc_z) << " P = " << sqrt(px*px+py*py+pz*pz) << "\n";
+//cout << pz<<" "<< -sx/sz*px -1./sz<<" \n";
 
 if ((ph_EL < 30.) || (ph_EL > 330.)) {
 sector = 1;
