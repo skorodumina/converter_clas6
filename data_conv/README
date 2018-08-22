@@ -1,0 +1,26 @@
+Here is the description, how the converted data files for the deuteron part of the "e1e" run period were produced. 
+
+The "out_conv_2pi_8Mar2018_*.root" files contain the reduced t21 trees that were converted from the original h10 trees, which are located at  /w/mss/clas/e1e/production/pass1/h10/*.root  (run numbers 36516 - 36615)
+
+There are 1989 original h10 root files at /w/mss/clas/e1e/production/pass1/h10 . However, the file "a1ntp_36550_pass1.a14.rzn.root" is damaged. This file was not used.
+
+Each seven h10 files were converted into one t21 file, therefore totally 284 t21 files were produced. (1988/7 = 284). 
+
+The converted files are stored at  /mss/home/skorodum/e1e/data_2pi_conv_8Mar2018/
+
+The converted file out_conv_2pi_8Mar2018_98.root corresponds to the bunch of h10 files that contained the damaged one. This damaged file was substituted to the last file in the whole sequence (number 1989), which is "a1ntp_36615_pass1.a05.rzn.root".
+
+----------------------------
+file_list - contains the list of files from /w/mss/clas/e1e/production/pass1/h10
+
+h10tot21 - is an executable converter file
+
+go_sub_data.sh - a script that submits the farm jobs. It creates the run_data*.sh that correspond to each farm job (examples are in the run_data_dir directory). This run_data*.sh executes on farms - it makes jget of all needed h10 files, then creates the inp file, then performs "h10tot21 < inp". Totally 284 jobs are submitted, however the job 98 fails due to the damaged file (see the explanation above). The bunch of input h10 files should be changed manually for this job in a way described above.
+-----------------------------
+
+Original h10 trees with the empty target runs are stored at /home/gleb/e1e/deutron_empty
+
+They are converted (with the executabe h10tot21_empty and the input file inp_empty) to one file "out_conv_empty_2pi_8Mar2018.root", which is stored at /mss/home/skorodum/e1e/ .
+-----------------------------
+
+The converter code is here: https://github.com/skorodumina/converter_clas6.git
