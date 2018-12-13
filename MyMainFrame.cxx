@@ -141,7 +141,7 @@ void MyMainFrame::DoDraw() {
  adc_offset = new Double_t [12];
  Double_t * adc_cut;
  adc_cut = new Double_t [12]; 
- Short_t m;
+ Short_t m,l;
  Long64_t i,nstart,nstop,n_incl,n_elast;
 
  
@@ -650,7 +650,7 @@ n_elast = n_elast + 1;
  //--------------------------
  if (data_sim==2){
  indtype = 2;
- th_EL=br_mctheta->GetLeaf("mctheta")->GetValue(0);
+/* th_EL=br_mctheta->GetLeaf("mctheta")->GetValue(0);
  th_PIm=br_mctheta->GetLeaf("mctheta")->GetValue(1);
  th_PIp=br_mctheta->GetLeaf("mctheta")->GetValue(2);
  th_P=br_mctheta->GetLeaf("mctheta")->GetValue(3);
@@ -663,8 +663,34 @@ n_elast = n_elast + 1;
  P_EL=br_mcp->GetLeaf("mcp")->GetValue(0);
  P_PIm=br_mcp->GetLeaf("mcp")->GetValue(1);
  P_PIp=br_mcp->GetLeaf("mcp")->GetValue(2);
- P_P=br_mcp->GetLeaf("mcp")->GetValue(3);
+ P_P=br_mcp->GetLeaf("mcp")->GetValue(3);*/
+ for (l=0; l<4; l++){
  
+ if (br_mcid->GetLeaf("mcid")->GetValue(l) == 11){
+  th_EL=br_mctheta->GetLeaf("mctheta")->GetValue(l);
+  ph_EL=br_mcphi->GetLeaf("mcphi")->GetValue(l);
+  P_EL=br_mcp->GetLeaf("mcp")->GetValue(l);
+ };
+ 
+ if (br_mcid->GetLeaf("mcid")->GetValue(l) == -211){ 
+ th_PIm=br_mctheta->GetLeaf("mctheta")->GetValue(l); 
+ ph_PIm=br_mcphi->GetLeaf("mcphi")->GetValue(l); 
+ P_PIm=br_mcp->GetLeaf("mcp")->GetValue(l); 
+ };
+
+ if (br_mcid->GetLeaf("mcid")->GetValue(l) == 211){
+  th_PIp=br_mctheta->GetLeaf("mctheta")->GetValue(l);
+  ph_PIp=br_mcphi->GetLeaf("mcphi")->GetValue(l);
+  P_PIp=br_mcp->GetLeaf("mcp")->GetValue(l);
+ }; 
+
+ if (br_mcid->GetLeaf("mcid")->GetValue(l) == 2212){
+ th_P=br_mctheta->GetLeaf("mctheta")->GetValue(l);
+ ph_P=br_mcphi->GetLeaf("mcphi")->GetValue(l);
+ P_P=br_mcp->GetLeaf("mcp")->GetValue(l);
+};
+
+}; 
  x_EL = br_mcvx_x_el ->GetLeaf("mcvx_x_el")->GetValue();
  y_EL = br_mcvx_y_el ->GetLeaf("mcvx_y_el")->GetValue();
  z_EL = br_mcvx_z_el ->GetLeaf("mcvx_z_el")->GetValue();
