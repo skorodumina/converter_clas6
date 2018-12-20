@@ -32,7 +32,7 @@ Dictationarys:
 
 clean:
 	rm -f *.o
-	rm -f *Dict.*
+	rm -f *Dict*.*
 	rm -f G__*
 	rm h10tot21
 	

@@ -650,6 +650,7 @@ n_elast = n_elast + 1;
  //--------------------------
  if (data_sim==2){
  indtype = 2;
+ 
 /* th_EL=br_mctheta->GetLeaf("mctheta")->GetValue(0);
  th_PIm=br_mctheta->GetLeaf("mctheta")->GetValue(1);
  th_PIp=br_mctheta->GetLeaf("mctheta")->GetValue(2);
@@ -664,7 +665,7 @@ n_elast = n_elast + 1;
  P_PIm=br_mcp->GetLeaf("mcp")->GetValue(1);
  P_PIp=br_mcp->GetLeaf("mcp")->GetValue(2);
  P_P=br_mcp->GetLeaf("mcp")->GetValue(3);*/
- for (l=0; l<4; l++){
+ for (l=0; l<br_mcnpart->GetLeaf("mcnpart")->GetValue(); l++){
  
  if (br_mcid->GetLeaf("mcid")->GetValue(l) == 11){
   th_EL=br_mctheta->GetLeaf("mctheta")->GetValue(l);
